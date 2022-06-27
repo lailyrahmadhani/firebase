@@ -1,12 +1,9 @@
-import { Alert } from "react-bootstrap";
+import TextCustom from "./TextCustom";
 
 function App() {
   return (
     <div className="App">
-      <Alert dismissible variant="danger">
-        <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-        <p>Change this and that and try again.</p>
-      </Alert>
+      <TextCustom />
     </div>
   );
 }

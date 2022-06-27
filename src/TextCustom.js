@@ -5,62 +5,98 @@ import cn from "classnames";
 function TextCustom() {
   const [text, setText] = useState("");
 
-  const [isBold, setIsBold] = useState(false);
-  const [isItalic, setIsItalic] = useState(false);
-  const [isUnderline, setIsUnderline] = useState(false);
-  const [isLineThrough, setIsLineThrough] = useState(false);
-
   function handleTextChange(event) {
     const value = event.target.value;
     setText(value);
   }
 
+  const [isBold, setIsBold] = useState(false);
+  const [isItalic, setIsItalic] = useState(false);
+  const [isUnderline, setIsUnderline] = useState(false);
+
+  const [alignment, setAlignment] = useState("start");
+
+  const [size, setSize] = useState(16);
+
+  function handleSizeChange(event) {
+    const value = event.target.valueAsNumber;
+    setSize(value);
+  }
+
   return (
     <Container className="pt-4">
       <Form.Group className="mb-3">
-        <Form.Control
-          placeholder="Masukkan text apapun"
-          value={text}
-          onChange={handleTextChange}
-        />
+        <Form.Label>Masukkan text apapun :</Form.Label>
+        <Form.Control value={text} onChange={handleTextChange} />
       </Form.Group>
 
       <Form.Group className="mb-3">
+        <Form.Label>Style :</Form.Label>
+        <br />
         <Form.Check
           inline
           label="Bold"
-          name="bold"
           id="bold"
           type="checkbox"
-          value={isBold}
+          checked={isBold}
           onChange={() => setIsBold(!isBold)}
         />
         <Form.Check
           inline
           label="Italic"
-          name="italic"
           id="italic"
           type="checkbox"
-          value={isItalic}
+          checked={isItalic}
           onChange={() => setIsItalic(!isItalic)}
         />
         <Form.Check
           inline
           label="Underline"
-          name="underline"
           id="underline"
           type="checkbox"
-          value={isUnderline}
+          checked={isUnderline}
           onChange={() => setIsUnderline(!isUnderline)}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>Alignment :</Form.Label>
+        <br />
+        <Form.Check
+          inline
+          label="Start"
+          id="alignment-start"
+          type="radio"
+          checked={alignment === "start"}
+          onChange={() => setAlignment("start")}
         />
         <Form.Check
           inline
-          label="Line Through"
-          name="line-through"
-          id="line-through"
-          type="checkbox"
-          value={isLineThrough}
-          onChange={() => setIsLineThrough(!isLineThrough)}
+          label="Center"
+          id="alignment-center"
+          type="radio"
+          checked={alignment === "center"}
+          onChange={() => setAlignment("center")}
+        />
+        <Form.Check
+          inline
+          label="End"
+          id="alignment-end"
+          type="radio"
+          checked={alignment === "end"}
+          onChange={() => setAlignment("end")}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>Size :</Form.Label>
+        <Form.Control
+          type="number"
+          size="sm"
+          min={8}
+          style={{ width: 60 }}
+          value={size}
+          onChange={handleSizeChange}
         />
       </Form.Group>
 
@@ -69,8 +105,9 @@ function TextCustom() {
           isBold && "fw-bold",
           isItalic && "fst-italic",
           isUnderline && "text-decoration-underline",
-          isLineThrough && "text-decoration-line-through"
+          `text-${alignment}`
         )}
+        style={{ fontSize: size }}
       >
         {text}
       </p>

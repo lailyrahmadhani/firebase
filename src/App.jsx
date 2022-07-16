@@ -1,9 +1,11 @@
-import TextCustom from "./TextCustom";
+import Header from "./components/Header";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <div className="App">
-      <TextCustom />
+      <Header />
+      <Home />
     </div>
   );
 }

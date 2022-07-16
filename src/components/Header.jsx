@@ -14,8 +14,6 @@ function Header() {
             <Nav.Link href="/tentang-kami">Tentang Kami</Nav.Link>
 
             <Nav.Link href="/hubungi-kami">Hubungi Kami</Nav.Link>
-
-            <Nav.Link href="/blog">Blog</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
